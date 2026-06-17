@@ -7,7 +7,11 @@ const TOKEN = process.env.TOKEN;
 
 app.get("/vendas", async (req, res) => {
   try {
-    const response = await fetch("https://casasdamamae.innovaro.com.br/api/izi/v1/vendas", {
+    const { ini, fim } = req.query;
+
+    const url = `https://casasdamamae.innovaro.com.br/api/izi/v1/vendas?ini=${ini}&fim=${fim}`;
+
+    const response = await fetch(url, {
       headers: {
         Authorization: `Bearer ${TOKEN}`
       }
